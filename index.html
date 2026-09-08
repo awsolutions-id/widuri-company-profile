@@ -155,7 +155,7 @@
         .card h2 { color:var(--primary-blue); margin-bottom:12px; font-size:22px; text-align:center; }
         .card p { text-align:center; line-height:1.5; font-size:16px; color:var(--text) !important; margin:0; }
         
-        /* === VIDEO PROFIL — PERBAIKAN PEMUTARAN & SUMBER CDN === */
+        /* === VIDEO PROFIL — BARU & RESPONSIF === */
         .video-profil-card { 
             background:#fff !important; 
             margin:12px 0; 
@@ -166,6 +166,8 @@
         }
         .video-profil-card video { 
             width:100%; 
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
             border-radius:6px; 
             outline:none; 
             background: #000;
@@ -323,7 +325,7 @@
         </div>
         <div class="profile-content">
             
-            <!-- === VIDEO PROFIL YANG DIPERBAIKI === -->
+            <!-- === VIDEO BRAND NEW (UPDATED) === -->
             <div class="video-profil-card">
                 <h3 class="cert-title">Video Profil Perusahaan</h3>
                 <video 
@@ -336,14 +338,14 @@
                     controlslist="nodownload nofullscreen noremoteplayback"
                     disablepictureinpicture
                 >
-                    <!-- Sumber utama menggunakan jsDelivr CDN untuk stabilitas GitHub -->
-                    <source src="https://cdn.jsdelivr.net/gh/laman-utama/pt-windudualestari@main/WIDURI%20VIDEO%20SLIDE.mp4" type="video/mp4">
-                    <!-- Fallback ke raw github jika cdn gagal -->
-                    <source src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/WIDURI%20VIDEO%20SLIDE.mp4" type="video/mp4">
+                    <!-- Primary Source: Raw GitHub -->
+                    <source src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/WIDURI_VIDEO_BRANDA.mp4" type="video/mp4">
+                    <!-- Fallback Source: jsDelivr CDN for better reliability -->
+                    <source src="https://cdn.jsdelivr.net/gh/laman-utama/pt-windudualestari@main/WIDURI_VIDEO_BRANDA.mp4" type="video/mp4">
                     Browser Anda tidak mendukung pemutaran video.
                 </video>
             </div>
-            <!-- === AKHIR VIDEO PROFIL === -->
+            <!-- === AKHIR VIDEO BRAND === -->
 
             <div class="card"><h2>Profil Singkat</h2><p><strong>PT. Windu Dua Lestari</strong> didirikan tahun 2020 di Gowa, Sulawesi Selatan. Bergerak di jasa tenaga kerja, kebersihan, keamanan, pengadaan barang, perdagangan umum, percetakan‑konveksi, kontraktor & mekanikal‑elektrikal. Berkomitmen profesional, amanah, dan berkualitas — prinsip utama: <em>Sigap – Cepat– Tuntas</em>.</p></div>
             <div class="card"><div class="icon-circle">🎯</div><h2>Visi</h2><p>Menjadi penyedia jasa terdepan di Indonesia yang mengutamakan kualitas dan pelayanan prima melalui manajemen & SDM berkualitas.</p></div>
@@ -439,7 +441,7 @@
                 
                 <div class="map-section-kontak">
                     <div class="map-card">
-                        <h3 style="font-size:17px; color:var(--primary-blue); margin-bottom:10px;">🗺️ Lokasi Kami</h3>
+                        <h3 style="font-size:17px; color:var(--primary-blue); margin-bottom:10px;">️ Lokasi Kami</h3>
                         <div class="map-container">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.88!2d119.4405!3d-5.1992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefd7c4b5d7b9b%3A0x7d7b8c9d0e1f2a3b!2sBTN%20Minasa%20Indah%20Blok%20B%20No.2!5e0!3m2!1sid!2sid" allowfullscreen loading="lazy"></iframe>
                         </div>
