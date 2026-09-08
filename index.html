@@ -69,13 +69,21 @@
         }
         .menu-list a::after { content:""; }
 
+        /* === LOGIKA PANAH DAFTAR LAYANAN (SESUAI PERMINTAAN) === */
         .daftar-layanan-parent { position:relative; }
         .daftar-layanan-link { cursor:pointer; user-select:none; }
+        
+        /* Ikon panah default menghadap ke BAWAH */
         .daftar-layanan-icon { 
-            position:absolute; right:20px; top:50%; transform:translateY(-50%);
+            position:absolute; right:20px; top:50%; transform:translateY(-50%) rotate(0deg);
             font-size:14px; color:#667E99; transition:transform .3s ease; pointer-events:none; 
         }
-        .daftar-layanan-parent.open .daftar-layanan-icon { transform:translateY(-50%) rotate(180deg); color:var(--primary-blue); }
+        
+        /* Saat class 'open' aktif, panah berputar 180 derajat menjadi MENGHADAP ATAS */
+        .daftar-layanan-parent.open .daftar-layanan-icon { 
+            transform:translateY(-50%) rotate(180deg); color:var(--primary-blue); 
+        }
+        
         .daftar-layanan-submenu { 
             list-style:none; padding:8px 0 12px 0; margin:0; 
             max-height:0; overflow:hidden; transition:max-height .35s ease;
@@ -150,12 +158,23 @@
         .profile-content { max-width:1000px; margin:0 auto; padding:0 20px 25px; }
         .card { background:#fff !important; margin:12px 0; padding:18px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.1); text-align:center; transition:transform .3s, box-shadow .3s; }
         .card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.12); }
-        .icon-circle { width:55px; height:55px; background:var(--primary-blue); color:#fff !important; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:24px; }
-        .card:hover .icon-circle { transform:scale(1.05); }
-        .card h2 { color:var(--primary-blue); margin-bottom:12px; font-size:22px; text-align:center; }
-        .card p { text-align:center; line-height:1.5; font-size:16px; color:var(--text) !important; margin:0; }
         
-        /* === VIDEO PROFIL — BARU & RESPONSIF === */
+        /* Style khusus untuk ikon Visi & Misi */
+        .icon-circle { 
+            width:65px; height:65px; 
+            background:var(--primary-blue); 
+            color:#fff !important; 
+            border-radius:50%; 
+            display:flex; align-items:center; justify-content:center; 
+            margin:0 auto 15px; 
+            font-size:28px; 
+            box-shadow: 0 4px 10px rgba(0,51,153,0.2);
+        }
+        .card:hover .icon-circle { transform:scale(1.05); }
+        .card h2 { color:var(--primary-blue); margin-bottom:12px; font-size:24px; text-align:center; font-weight:700; }
+        .card p { text-align:center; line-height:1.6; font-size:16px; color:var(--text) !important; margin:0; }
+        
+        /* === VIDEO PROFIL — UPDATED & CLEAN CONTROLS === */
         .video-profil-card { 
             background:#fff !important; 
             margin:12px 0; 
@@ -172,9 +191,18 @@
             outline:none; 
             background: #000;
         }
+        /* Sembunyikan tombol download, fullscreen, dan PIP secara agresif */
         video::-webkit-media-controls-download-button { display: none !important; }
         video::-webkit-media-controls-fullscreen-button { display: none !important; }
-        video::-webkit-media-controls-enclosure { border-radius:6px; }
+        video::-webkit-media-controls-panel { display: none !important; }
+        video::-webkit-media-controls-play-button { display: none !important; }
+        video::-webkit-media-controls-timeline { display: none !important; }
+        video::-webkit-media-controls-current-time-display { display: none !important; }
+        video::-webkit-media-controls-time-remaining-display { display: none !important; }
+        video::-webkit-media-controls-volume-slider { display: none !important; }
+        video::-webkit-media-controls-mute-button { display: none !important; }
+        video::-webkit-media-controls-toggle-closed-captions-button { display: none !important; }
+        video::-webkit-media-controls-enclosure { border-radius:6px; overflow: hidden; }
         
         /* === MOTTO — SAMA UKURAN DENGAN KOTAK TIM KAMI === */
         .motto-block { 
@@ -281,9 +309,12 @@
             <li><a href="#beranda" class="menu-link" onclick="tutupMenu()"><span>Beranda</span></a></li>
             <li><a href="#profil" class="menu-link" onclick="tutupMenu()"><span>Profil</span></a></li>
             <li><a href="#layanan" class="menu-link" onclick="tutupMenu()"><span>Layanan</span></a></li>
+            
+            <!-- BAGIAN DAFTAR LAYANAN DENGAN LOGIKA PANAH BARU -->
             <li class="daftar-layanan-parent">
                 <a class="menu-link daftar-layanan-link" onclick="toggleDaftarLayanan(event)">
                     <span>Daftar Layanan</span>
+                    <!-- Ikon ini akan berputar 180 derajat saat diklik -->
                     <i class="fas fa-chevron-down daftar-layanan-icon"></i>
                 </a>
                 <ul class="daftar-layanan-submenu">
@@ -296,6 +327,7 @@
                     <li><a onclick="bukaLayanan('layanan-7'); tutupMenu();">Advertising (Percetakan) & Konveksi</a></li>
                 </ul>
             </li>
+            
             <li><a href="#kontak" class="menu-link" onclick="tutupMenu()"><span>Kontak</span></a></li>
         </ul>
     </div>
@@ -325,7 +357,7 @@
         </div>
         <div class="profile-content">
             
-            <!-- === VIDEO BRAND NEW (UPDATED) === -->
+            <!-- === VIDEO PROFIL BARU (UPDATED) === -->
             <div class="video-profil-card">
                 <h3 class="cert-title">Video Profil Perusahaan</h3>
                 <video 
@@ -338,18 +370,31 @@
                     controlslist="nodownload nofullscreen noremoteplayback"
                     disablepictureinpicture
                 >
-                    <!-- Primary Source: Raw GitHub -->
-                    <source src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/WIDURI_VIDEO_BRANDA.mp4" type="video/mp4">
-                    <!-- Fallback Source: jsDelivr CDN for better reliability -->
-                    <source src="https://cdn.jsdelivr.net/gh/laman-utama/pt-windudualestari@main/WIDURI_VIDEO_BRANDA.mp4" type="video/mp4">
+                    <!-- Primary Source: Raw GitHub (File Baru) -->
+                    <source src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/WIDURI_VIDEO_PROFIL.mp4" type="video/mp4">
+                    <!-- Fallback Source: jsDelivr CDN -->
+                    <source src="https://cdn.jsdelivr.net/gh/laman-utama/pt-windudualestari@main/WIDURI_VIDEO_PROFIL.mp4" type="video/mp4">
                     Browser Anda tidak mendukung pemutaran video.
                 </video>
             </div>
-            <!-- === AKHIR VIDEO BRAND === -->
+            <!-- === AKHIR VIDEO PROFIL === -->
 
             <div class="card"><h2>Profil Singkat</h2><p><strong>PT. Windu Dua Lestari</strong> didirikan tahun 2020 di Gowa, Sulawesi Selatan. Bergerak di jasa tenaga kerja, kebersihan, keamanan, pengadaan barang, perdagangan umum, percetakan‑konveksi, kontraktor & mekanikal‑elektrikal. Berkomitmen profesional, amanah, dan berkualitas — prinsip utama: <em>Sigap – Cepat– Tuntas</em>.</p></div>
-            <div class="card"><div class="icon-circle">🎯</div><h2>Visi</h2><p>Menjadi penyedia jasa terdepan di Indonesia yang mengutamakan kualitas dan pelayanan prima melalui manajemen & SDM berkualitas.</p></div>
-            <div class="card"><div class="icon-circle">✔</div><h2>Misi</h2><p>Membuka lapangan kerja serta menerapkan pelatihan dan manajemen profesional agar pelayanan tepat, cepat dan terjamin.</p></div>
+            
+            <!-- PERBAIKAN IKON VISI (TARGET/BULLSEYE) -->
+            <div class="card">
+                <div class="icon-circle"><i class="fas fa-bullseye"></i></div>
+                <h2>Visi</h2>
+                <p>Menjadi penyedia jasa terdepan di Indonesia yang mengutamakan kualitas dan pelayanan prima melalui manajemen & SDM berkualitas.</p>
+            </div>
+            
+            <!-- PERBAIKAN IKON MISI (CHECKMARK) -->
+            <div class="card">
+                <div class="icon-circle"><i class="fas fa-check"></i></div>
+                <h2>Misi</h2>
+                <p>Membuka lapangan kerja serta menerapkan pelatihan dan manajemen profesional agar pelayanan tepat, cepat dan terjamin.</p>
+            </div>
+
             <div class="motto-block"><div class="section-header"><div class="line"></div>Motto<div class="line"></div></div><h2>SIGAP – CEPAT – TUNTAS</h2></div>
             <div class="card"><h3 class="cert-title">Tim Kami</h3><img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/TIM%20WIDURI.png" class="img-fluid" alt="Tim Kami"></div>
             <div class="card"><h3 class="cert-title">Sertifikat</h3><img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/SERTIFIKAT.JPG" class="img-fluid" alt="Sertifikat"></div>
@@ -388,7 +433,7 @@
                 <p class="service-desc">Pemangkasan, penanaman, penyiraman, pemupukan, pengendalian hama & pemeliharaan rutin agar taman tetap asri, indah & sehat.</p>
             </div>
             <div class="service-item" id="layanan-3">
-                <button class="tutup-btn" onclick="tutupLayanan()">✕</button>
+                <button class="tutup-btn" onclick="tutupLayanan()"></button>
                 <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/PERALATAN%20KIMIA.JPG" alt="Kimia & Alat">
                 <div class="icon-wrapper"><div class="service-icon-circle"><i class="fas fa-shopping-basket"></i></div></div>
                 <h3 class="service-title">Pengadaan Barang & Kimia Cleaning</h3>
@@ -433,7 +478,7 @@
         <h2 class="section-title">Informasi & Pesanan</h2>
         <div class="contact-container">
             <div class="info-card">
-                <h3>📞 Informasi Perusahaan</h3>
+                <h3> Informasi Perusahaan</h3>
                 <div class="info-item"><strong>Alamat:</strong><br>BTN Minasa Indah Blok B No.2 RT.001/RW.004<br>Kel. Batangkaluku, Kec. Somba Opu<br>Kab. Gowa 92111, Sulawesi Selatan</div>
                 <div class="info-item"><strong>Telepon:</strong><br><a href="tel:085750681600">0857 5068 1600</a><br><a href="tel:082291593455">0822 9159 3455</a></div>
                 <div class="info-item"><strong>Email:</strong><br><a href="mailto:info@pt.widuri27517@gmail.com">info@pt.widuri27517@gmail.com</a></div>
@@ -450,7 +495,7 @@
             </div>
 
             <div class="form-card">
-                <h3>✉️ Formulir Pesanan</h3>
+                <h3>️ Formulir Pesanan</h3>
                 <form id="formPesanan">
                     <div class="form-group">
                         <label>Nama Lengkap *</label>
@@ -497,22 +542,22 @@
             <h3>(Widuri)</h3>
             <p class="deskripsi">Bergerak di kebersihan, keamanan, outsourcing tenaga kerja, pengadaan barang, perdagangan umum, advertising-percetakan-konveksi, kontraktor & mekanikal-elektrikal — berkomitmen profesional & terpercaya.</p>
             <h4>Jam Kerja</h4>
-            <div class="jam-kerja"><p>📅 Senin – Sabtu : 08.00 – 17.00 WITA</p><p>📅 Minggu & Libur : Tutup</p></div>
+            <div class="jam-kerja"><p>📅 Senin – Sabtu : 08.00 – 17.00 WITA</p><p> Minggu & Libur : Tutup</p></div>
             <div class="sosial">
                 <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://wa.me/6285750681600" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="kontak-item">
-                <p>📍 BTN Minasa Indah Blok B No.2 RT.001/RW.004, Kel. Batangkaluku, Kec. Somba Opu, Kab. Gowa 92111, Sulawesi Selatan</p>
-                <p>📧 info@pt.widuri27517@gmail.com</p>
-                <p>📞 0857 5068 1600 / 0822 9159 3455</p>
+                <p> BTN Minasa Indah Blok B No.2 RT.001/RW.004, Kel. Batangkaluku, Kec. Somba Opu, Kab. Gowa 92111, Sulawesi Selatan</p>
+                <p> info@pt.widuri27517@gmail.com</p>
+                <p> 0857 5068 1600 / 0822 9159 3455</p>
             </div>
             <div class="visitor-box">
                 <h4>Statistik Pengunjung</h4>
                 <p>👥 Total Pengunjung : <span id="total-visitor">0</span></p>
-                <p>📅 Hari Ini : <span id="today-visitor">0</span></p>
-                <p>📊 Bulan Ini : <span id="month-visitor">0</span></p>
+                <p> Hari Ini : <span id="today-visitor">0</span></p>
+                <p> Bulan Ini : <span id="month-visitor">0</span></p>
                 <p class="small-text">*Data diperbarui secara otomatis</p>
             </div>
         </div>
@@ -537,11 +582,12 @@
             document.querySelectorAll('.daftar-layanan-parent').forEach(el => el.classList.remove('open'));
         }
 
-        // === FUNGSI BUKA/TUTUP DAFTAR LAYANAN ===
+        // === FUNGSI BUKA/TUTUP DAFTAR LAYANAN (LOGIKA PANAH) ===
         function toggleDaftarLayanan(e) {
             e.preventDefault();
             e.stopPropagation();
             const parent = e.target.closest('.daftar-layanan-parent');
+            // Menambah/menghapus class 'open' yang memicu rotasi panah di CSS
             parent.classList.toggle('open');
         }
 
