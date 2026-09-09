@@ -35,8 +35,14 @@
             line-height: 1.5; 
             scroll-behavior: smooth; 
             padding-top: 0;
+            /* Mencegah seleksi teks dan drag global */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
         }
-        img { max-width: 100%; height: auto; }
+        img { max-width: 100%; height: auto; pointer-events: none; }
 
         section { margin-bottom: 30px !important; padding-top: 12px !important; padding-bottom: 12px !important; }
         .home-hero { margin-bottom: 25px !important; }
@@ -330,7 +336,7 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;" ondragstart="return false;">
     <a href="https://wa.me/6285750681600" class="wa-float-button" target="_blank"><i class="fab fa-whatsapp"></i> Hubungi Kami</a>
 
     <div class="sidebar-menu" id="sidebarMenu">
@@ -362,7 +368,7 @@
     </div>
 
     <header class="header">
-        <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/PT_WIDURI%20LOGO.png" alt="Logo PT Windu Dua Lestari" class="logo">
+        <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/PT_WIDURI%20LOGO.png" alt="Logo PT Windu Dua Lestari" class="logo" draggable="false">
         <span class="menu-toggle" id="menuToggleBtn">☰</span>
     </header>
 
@@ -398,6 +404,7 @@
                     preload="metadata"
                     controlslist="nodownload nofullscreen noremoteplayback"
                     disablepictureinpicture
+                    oncontextmenu="return false;"
                 >
                     <!-- Primary Source: Raw GitHub (File Baru) -->
                     <source src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/VIDEO%20PROFIL%20WIDURI.mp4" type="video/mp4">
@@ -425,8 +432,8 @@
             </div>
 
             <div class="motto-block"><div class="section-header"><div class="line"></div>Motto<div class="line"></div></div><h2>SIGAP – CEPAT – TUNTAS</h2></div>
-            <div class="card"><h3 class="cert-title">Tim Kami</h3><img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/TIM%20WIDURI.png" class="img-fluid" alt="Tim Kami"></div>
-            <div class="card"><h3 class="cert-title">Sertifikat</h3><img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/SERTIFIKAT.JPG" class="img-fluid" alt="Sertifikat"></div>
+            <div class="card"><h3 class="cert-title">Tim Kami</h3><img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/TIM%20WIDURI.png" class="img-fluid" alt="Tim Kami" draggable="false"></div>
+            <div class="card"><h3 class="cert-title">Sertifikat</h3><img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/SERTIFIKAT.JPG" class="img-fluid" alt="Sertifikat" draggable="false"></div>
         </div>
     </section>
 
@@ -449,49 +456,49 @@
         <div class="services-container">
             <div class="service-item" id="layanan-1">
                 <button class="tutup-btn" onclick="tutupLayanan()">✕</button>
-                <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/CLEANING%20SERVICE.JPG" alt="Cleaning Service">
+                <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/CLEANING%20SERVICE.JPG" alt="Cleaning Service" draggable="false">
                 <div class="icon-wrapper"><div class="service-icon-circle"><i class="fas fa-building"></i></div></div>
                 <h3 class="service-title">Cleaning Service</h3>
                 <p class="service-desc">Tenaga kebersihan terlatih & bersertifikat untuk kantor, gedung, rumah sakit, hotel, sekolah, perumahan — lengkap alat & bahan aman, menjamin lingkungan bersih & sehat.</p>
             </div>
             <div class="service-item" id="layanan-2">
                 <button class="tutup-btn" onclick="tutupLayanan()">✕</button>
-                <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/GARDENER.JPG" alt="Gardener">
+                <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/GARDENER.JPG" alt="Gardener" draggable="false">
                 <div class="icon-wrapper"><div class="service-icon-circle"><i class="fas fa-leaf"></i></div></div>
                 <h3 class="service-title">Gardener / Perawatan Taman</h3>
                 <p class="service-desc">Pemangkasan, penanaman, penyiraman, pemupukan, pengendalian hama & pemeliharaan rutin agar taman tetap asri, indah & sehat.</p>
             </div>
             <div class="service-item" id="layanan-3">
                 <button class="tutup-btn" onclick="tutupLayanan()"></button>
-                <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/PERALATAN%20KIMIA.JPG" alt="Kimia & Alat">
+                <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/PERALATAN%20KIMIA.JPG" alt="Kimia & Alat" draggable="false">
                 <div class="icon-wrapper"><div class="service-icon-circle"><i class="fas fa-shopping-basket"></i></div></div>
                 <h3 class="service-title">Pengadaan Barang & Kimia Cleaning</h3>
                 <p class="service-desc">Pasokan bahan kimia pembersih berkualitas, alat & mesin kebersihan sesuai standar, aman dan lengkap untuk kebutuhan gedung, rumah sakit, hotel & kantor.</p>
             </div>
             <div class="service-item" id="layanan-4">
                 <button class="tutup-btn" onclick="tutupLayanan()">✕</button>
-                <img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/SECURITY.JPG" alt="Keamanan">
+                <img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/SECURITY.JPG" alt="Keamanan" draggable="false">
                 <div class="icon-wrapper"><div class="service-icon-circle"><i class="fas fa-shield-alt"></i></div></div>
                 <h3 class="service-title">Keamanan / Security</h3>
                 <p class="service-desc">Tenaga keamanan terlatih, bersertifikat dan sah hukumnya untuk kantor, pabrik, perumahan, kawasan komersial & acara. Operasi teratur, disiplin tinggi, diawasi rutin demi keamanan aset & lingkungan.</p>
             </div>
             <div class="service-item" id="layanan-5">
                 <button class="tutup-btn" onclick="tutupLayanan()">✕</button>
-                <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/MEKANIKAL.JPG" alt="MEP">
+                <img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/MEKANIKAL.JPG" alt="MEP" draggable="false">
                 <div class="icon-wrapper"><div class="service-icon-circle"><i class="fas fa-cog"></i></div></div>
                 <h3 class="service-title">MEP (Mekanikal, Elektrikal, Plumbing)</h3>
                 <p class="service-desc">Pemasangan, perbaikan & perawatan sistem listrik, AC, perpipaan, pompa air & peralatan mekanik gedung, rumah maupun industri oleh teknisi bersertifikat.</p>
             </div>
             <div class="service-item" id="layanan-6">
                 <button class="tutup-btn" onclick="tutupLayanan()">✕</button>
-                <img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/KONTRAKTOR_KONSTRUKSI.JPG" alt="Konstruksi">
+                <img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/KONTRAKTOR_KONSTRUKSI.JPG" alt="Konstruksi" draggable="false">
                 <div class="icon-wrapper"><div class="service-icon-circle"><i class="fas fa-hard-hat"></i></div></div>
                 <h3 class="service-title">Kontraktor & Konstruksi</h3>
                 <p class="service-desc">Pembangunan, renovasi, perbaikan & pemeliharaan gedung, rumah, ruko & fasilitas umum — dari perencanaan hingga selesai tepat waktu & berkualitas.</p>
             </div>
             <div class="service-item" id="layanan-7">
                 <button class="tutup-btn" onclick="tutupLayanan()">✕</button>
-                <img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/ADVERTISING%20(PERCETAKAN)%20%26%20KONVEKSI.JPG" alt="Advertising">
+                <img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/ADVERTISING%20(PERCETAKAN)%20%26%20KONVEKSI.JPG" alt="Advertising" draggable="false">
                 <div class="icon-wrapper"><div class="service-icon-circle"><i class="fas fa-print"></i></div></div>
                 <h3 class="service-title">Advertising (Percetakan) & Konveksi</h3>
                 <p class="service-desc">Desain grafis, spanduk, baliho, stiker, kartu nama, brosur, buku, kalender serta jasa konveksi seragam dan produk jahit lainnya. Hasil tajam, warna tahan lama & harga terjangkau.</p>
@@ -560,13 +567,13 @@
 
                 <div class="peta-indonesia-box">
                     <h4>🗺️ Jangkauan Seluruh Indonesia</h4>
-                    <img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/PETA%20INDONESIA%2001%20JPG.jpg" alt="Peta Indonesia">
+                    <img src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/PETA%20INDONESIA%2001%20JPG.jpg" alt="Peta Indonesia" draggable="false">
                 </div>
             </div>
         </div>
 
         <div class="info-lengkap">
-            <div class="logo-tengah"><img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/WIDURI_LOGO.png" alt="Logo PT Windu Dua Lestari"></div>
+            <div class="logo-tengah"><img src="https://raw.githubusercontent.com/awsolutions-id/widuri-company-profile/main/WIDURI_LOGO.png" alt="Logo PT Windu Dua Lestari" draggable="false"></div>
             <h2>PT. Windu Dua Lestari</h2>
             <h3>(Widuri)</h3>
             <p class="deskripsi">Bergerak di kebersihan, keamanan, outsourcing tenaga kerja, pengadaan barang, perdagangan umum, advertising-percetakan-konveksi, kontraktor & mekanikal-elektrikal — berkomitmen profesional & terpercaya.</p>
@@ -598,6 +605,21 @@
     </footer>
 
     <script>
+        // === PROTEKSI ANTI-DOWNLOAD & ANTI-COPY ===
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', function(e) {
+            // Blokir Ctrl+S, Ctrl+U, F12
+            if ((e.ctrlKey && (e.key === 's' || e.key === 'u')) || e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+                e.preventDefault();
+            }
+        });
+
         // === FUNGSI BUKA & TUTUP MENU SIDEBAR ===
         const sidebarMenu = document.getElementById('sidebarMenu');
         const menuToggleBtn = document.getElementById('menuToggleBtn');
