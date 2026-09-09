@@ -23,9 +23,13 @@
             --red-main: #D90000;
             --red-dark: #B00000;
             --red-light: #E62E2E;
-            /* Warna baru untuk model menu referensi */
-            --menu-bg-active: #3A4B6C; 
-            --menu-text-active: #FFFFFF;
+            
+            /* Warna Baru untuk Sidebar Menu (Background Gedung) */
+            --sidebar-bg-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            --sidebar-overlay: rgba(10, 35, 66, 0.92); /* Overlay biru gelap agar teks putih terbaca */
+            --sidebar-text-color: #FFFFFF;
+            --sidebar-hover-bg: rgba(255, 255, 255, 0.1);
+            --submenu-bg: rgba(0, 0, 0, 0.2);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -35,7 +39,6 @@
             line-height: 1.5; 
             scroll-behavior: smooth; 
             padding-top: 0;
-            /* Mencegah seleksi teks dan drag global */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -54,49 +57,56 @@
         .menu-toggle { font-size:24px; cursor:pointer; color:var(--primary-blue); transition:all .25s; padding:4px 8px; border-radius:50%; }
         .menu-toggle:hover { background:var(--primary-blue-soft); color:var(--red-main); }
 
-        /* === REVISI TOTAL SIDEBAR MENU (MODEL REFERENSI) === */
+        /* === REVISI TOTAL SIDEBAR MENU (BACKGROUND GEDUNG) === */
         .sidebar-menu { 
             position:fixed; top:65px; left:0; width:100%; height:calc(100vh - 65px); 
-            background: #FFFFFF !important; /* Background putih bersih seperti referensi */
+            /* Menggunakan gambar gedung yang sama dengan Hero Section + Overlay Biru Gelap */
+            background: linear-gradient(var(--sidebar-overlay), var(--sidebar-overlay)), var(--sidebar-bg-image);
+            background-size: cover;
+            background-position: center;
             transform:translateX(-100%); transition:.35s cubic-bezier(.4,0,.2,1); z-index:1000; 
-            padding:0; border-right:none; box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+            padding:0; border-right:none; box-shadow: 4px 0 25px rgba(0, 0, 0, 0.3);
             overflow-y: auto; -webkit-overflow-scrolling: touch;
         }
         .sidebar-menu.active { transform:translateX(0); }
 
-        .menu-list { list-style:none; margin-top:20px; padding:0; }
+        .menu-list { list-style:none; margin-top:10px; padding:0; }
         
         /* Item Menu Utama */
         .menu-list > li { 
-            border-bottom: 1px solid #f0f0f0; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
             margin: 0; 
             border-radius: 0;
         }
         
         .menu-list a { 
             display:flex; justify-content:space-between; align-items:center;
-            padding:18px 25px; font-size:16px !important; font-weight:700 !important; 
-            color:var(--dark-blue); text-decoration:none; transition:all .2s ease;
+            padding:16px 25px; 
+            font-size:14px !important; /* Ukuran Font Diperkecil Agar Rapi */
+            font-weight:600 !important; 
+            color:var(--sidebar-text-color); /* Teks Putih */
+            text-decoration:none; transition:all .2s ease;
             border-radius:0; white-space: nowrap; cursor:pointer;
-            text-transform: uppercase; /* Agar mirip gaya INDUSTRI pada referensi */
-            letter-spacing: 0.5px;
+            text-transform: uppercase; 
+            letter-spacing: 1px;
         }
 
-        /* Efek Hover & Aktif (Latar Gelap, Teks Putih) */
+        /* Efek Hover & Aktif (Transparansi Putih Halus) */
         .menu-list a:hover,
         .menu-list a.active,
         .daftar-layanan-parent.open > .daftar-layanan-link { 
-            background: var(--menu-bg-active); 
-            color: var(--menu-text-active);
+            background: var(--sidebar-hover-bg); 
+            color: #FFFFFF;
+            padding-left: 30px; /* Efek geser sedikit saat hover */
         }
 
         /* Ikon Panah Accordion */
         .daftar-layanan-icon { 
             font-size:12px; 
-            color: inherit; /* Mengikuti warna teks parent */
+            color: inherit; 
             transition:transform .3s ease; 
             pointer-events:none; 
-            opacity: 0.7;
+            opacity: 0.8;
         }
         
         /* Putar panah saat terbuka */
@@ -109,29 +119,27 @@
         .daftar-layanan-submenu { 
             list-style:none; padding:0; margin:0; 
             max-height:0; overflow:hidden; transition:max-height .35s ease;
-            background: #F8F9FA; /* Sedikit lebih gelap dari putih untuk membedakan level */
+            background: var(--submenu-bg); /* Latar lebih gelap untuk submenu */
         }
         .daftar-layanan-parent.open .daftar-layanan-submenu { max-height:800px; }
         
-        .daftar-layanan-submenu li { border-bottom: 1px solid #eeeeee; }
+        .daftar-layanan-submenu li { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .daftar-layanan-submenu li:last-child { border-bottom: none; }
         
         .daftar-layanan-submenu a { 
-            display:block; padding:15px 25px 15px 45px; /* Indentasi ke kanan */
-            font-size:14px !important; font-weight:500 !important; color:#555; 
+            display:block; padding:14px 25px 14px 45px; 
+            font-size:13px !important; font-weight:500 !important; color:rgba(255,255,255,0.8); 
             text-decoration:none; transition:all .2s ease; border-radius:0; white-space: normal;
-            text-transform: none; /* Kembalikan huruf normal untuk submenu */
-            letter-spacing: normal;
+            text-transform: none; 
+            letter-spacing: 0.5px;
         }
         
         .daftar-layanan-submenu a:hover { 
-            background: #E9ECEF; 
-            color: var(--primary-blue); 
-            padding-left: 50px; /* Efek geser sedikit saat hover */
+            background: rgba(255, 255, 255, 0.1); 
+            color: #FFFFFF; 
+            padding-left: 50px;
         }
-        /* Hapus pseudo-element default */
         .menu-list a::after, .daftar-layanan-submenu a::after { content:""; display:none; }
-
         /* === AKHIR REVISI SIDEBAR MENU === */
 
         .wa-float-button { position:fixed; bottom:20px; right:20px; z-index:99999; padding:8px 12px; border-radius:30px; background:var(--wa-green); color:#fff !important; text-decoration:none; display:flex; align-items:center; gap:5px; font-size:14px; box-shadow:0 4px 10px rgba(37,211,102,.25); transition:all .3s; }
@@ -195,7 +203,6 @@
         .card { background:#fff !important; margin:12px 0; padding:18px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.1); text-align:center; transition:transform .3s, box-shadow .3s; }
         .card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.12); }
         
-        /* Style khusus untuk ikon Visi & Misi */
         .icon-circle { 
             width:65px; height:65px; 
             background:var(--primary-blue); 
@@ -210,7 +217,7 @@
         .card h2 { color:var(--primary-blue); margin-bottom:12px; font-size:24px; text-align:center; font-weight:700; }
         .card p { text-align:center; line-height:1.6; font-size:16px; color:var(--text) !important; margin:0; }
         
-        /* === VIDEO PROFIL — UPDATED & CLEAN CONTROLS === */
+        /* === VIDEO PROFIL — CUSTOM PLAYER TANPA TOMBOL DOWNLOAD === */
         .video-profil-card { 
             background:#fff !important; 
             margin:12px 0; 
@@ -219,26 +226,47 @@
             box-shadow:0 2px 8px rgba(0,0,0,.1); 
             text-align:center; 
         }
-        .video-profil-card video { 
-            width:100%; 
+        .video-wrapper {
+            position: relative;
+            width: 100%;
             aspect-ratio: 16 / 9;
-            object-fit: cover;
-            border-radius:6px; 
-            outline:none; 
+            border-radius: 6px;
+            overflow: hidden;
             background: #000;
+            cursor: pointer;
         }
-        /* Sembunyikan tombol download, fullscreen, dan PIP secara agresif */
-        video::-webkit-media-controls-download-button { display: none !important; }
-        video::-webkit-media-controls-fullscreen-button { display: none !important; }
-        video::-webkit-media-controls-panel { display: none !important; }
-        video::-webkit-media-controls-play-button { display: none !important; }
-        video::-webkit-media-controls-timeline { display: none !important; }
-        video::-webkit-media-controls-current-time-display { display: none !important; }
-        video::-webkit-media-controls-time-remaining-display { display: none !important; }
-        video::-webkit-media-controls-volume-slider { display: none !important; }
-        video::-webkit-media-controls-mute-button { display: none !important; }
-        video::-webkit-media-controls-toggle-closed-captions-button { display: none !important; }
-        video::-webkit-media-controls-enclosure { border-radius:6px; overflow: hidden; }
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .custom-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 51, 153, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .video-wrapper:hover .custom-play-btn {
+            background: rgba(217, 0, 0, 0.9);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .video-wrapper.playing .custom-play-btn {
+            opacity: 0;
+            pointer-events: none;
+        }
         
         /* === MOTTO — SAMA UKURAN DENGAN KOTAK TIM KAMI === */
         .motto-block { 
@@ -392,26 +420,29 @@
         </div>
         <div class="profile-content">
             
-            <!-- === VIDEO PROFIL BARU (UPDATED LINK GITHUB) === -->
+            <!-- === VIDEO PROFIL BARU (CUSTOM PLAYER TANPA DOWNLOAD) === -->
             <div class="video-profil-card">
                 <h3 class="cert-title">Video Profil Perusahaan</h3>
-                <video 
-                    id="profilVideo"
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    preload="metadata"
-                    controlslist="nodownload nofullscreen noremoteplayback"
-                    disablepictureinpicture
-                    oncontextmenu="return false;"
-                >
-                    <!-- Primary Source: Raw GitHub (File Baru) -->
-                    <source src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/VIDEO%20PROFIL%20WIDURI.mp4" type="video/mp4">
-                    <!-- Fallback Source: jsDelivr CDN -->
-                    <source src="https://cdn.jsdelivr.net/gh/laman-utama/pt-windudualestari@main/VIDEO%20PROFIL%20WIDURI.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung pemutaran video.
-                </video>
+                <div class="video-wrapper" id="videoWrapper" onclick="toggleVideo()">
+                    <video 
+                        id="profilVideo"
+                        muted 
+                        loop 
+                        playsinline
+                        preload="metadata"
+                        disablepictureinpicture
+                    >
+                        <!-- Primary Source: Raw GitHub (File Baru) -->
+                        <source src="https://raw.githubusercontent.com/laman-utama/pt-windudualestari/main/VIDEO%20PROFIL%20WIDURI.mp4" type="video/mp4">
+                        <!-- Fallback Source: jsDelivr CDN -->
+                        <source src="https://cdn.jsdelivr.net/gh/laman-utama/pt-windudualestari@main/VIDEO%20PROFIL%20WIDURI.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung pemutaran video.
+                    </video>
+                    <!-- Custom Play Button Overlay -->
+                    <div class="custom-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
             </div>
             <!-- === AKHIR VIDEO PROFIL === -->
 
@@ -620,6 +651,29 @@
             }
         });
 
+        // === FUNGSI CUSTOM VIDEO PLAYER ===
+        const videoWrapper = document.getElementById('videoWrapper');
+        const profilVideo = document.getElementById('profilVideo');
+        
+        function toggleVideo() {
+            if (profilVideo.paused) {
+                profilVideo.play();
+                videoWrapper.classList.add('playing');
+            } else {
+                profilVideo.pause();
+                videoWrapper.classList.remove('playing');
+            }
+        }
+
+        // Auto-hide play button when video starts playing
+        profilVideo.addEventListener('play', function() {
+            videoWrapper.classList.add('playing');
+        });
+        
+        profilVideo.addEventListener('pause', function() {
+            videoWrapper.classList.remove('playing');
+        });
+
         // === FUNGSI BUKA & TUTUP MENU SIDEBAR ===
         const sidebarMenu = document.getElementById('sidebarMenu');
         const menuToggleBtn = document.getElementById('menuToggleBtn');
@@ -749,8 +803,10 @@
                 document.addEventListener('visibilitychange', function() {
                     if (document.hidden) {
                         vid.pause();
+                        videoWrapper.classList.remove('playing');
                     } else {
                         vid.play();
+                        videoWrapper.classList.add('playing');
                     }
                 });
             }
